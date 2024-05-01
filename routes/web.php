@@ -15,9 +15,9 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home.index');
+// });
 
 // Route::middleware([
 //     'auth:sanctum',
@@ -28,5 +28,6 @@ Route::get('/', function () {
 //         return view('dashboard');
 //     })->name('dashboard');
 // });
+Route::get('/', [AdminController::class, 'home']);
 
 Route::get('/home', [AdminController::class, 'index'])->name('home');
