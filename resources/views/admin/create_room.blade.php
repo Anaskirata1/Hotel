@@ -23,7 +23,7 @@
         <div class="page-header">
           <div class="container-fluid">
             <h2 class="h5 no-margin-bottom">Create Room</h2>
-
+            @include('sweetalert::alert')
             @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert"">
         <ul>

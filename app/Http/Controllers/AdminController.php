@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -63,11 +64,18 @@ class AdminController extends Controller
         $data->image =$imagename;
        }
         $data->save();
+        Alert::success('Room Added Successfully') ;
      return redirect()->back();
 
     }
     public function view_room(){
         $rooms = Room::all();
         return view('admin.view_room' , compact('rooms'));
+    }
+    public function room_delete($id){
+        $room = Room::find($id) ;
+        $room->delete();
+        Alert::success('Room Deleted Successfully') ;
+        return redirect()->back();
     }
 }

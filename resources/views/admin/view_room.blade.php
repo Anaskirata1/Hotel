@@ -17,6 +17,7 @@
         <div class="page-header">
           <div class="container-fluid">
             <h2 class="h5 mb-2">View Rooms</h2>
+            @include('sweetalert::alert')
             <div class="table-responsive">
             <table class="table table-dark table-striped ">
 
@@ -29,6 +30,7 @@
                     <th>Wifi</th>
                     <th>Type</th>
                     <th>Image</th>
+                    <th>Action</th>
                 </tr>
               </thead>
 
@@ -49,6 +51,7 @@
                             <img width="100px" src="room/{{ $room->image }}" alt="no image">
                            </div>
                         </td>
+                        <td><a class="confirmation" href="{{ url('room_delete',$room->id) }}"><i class="fa fa-trash"></i></a></td>
                     </tr>
 
                     @endforeach
@@ -62,5 +65,14 @@
     </div>
        @include('admin.footer')
   </body>
+  <script type="text/javascript">
+    var elems = document.getElementsByClassName('confirmation');
+    var confirmIt = function (e) {
+        if (!confirm('Are you sure?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    }
+</script>
 </html>
 
