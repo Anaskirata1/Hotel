@@ -1,4 +1,4 @@
-{{-- <x-app-layout> --}}
+
     <!DOCTYPE html>
 <html>
   <head>
@@ -12,4 +12,4 @@
        @include('admin.footer')
   </body>
 </html>
-{{-- </x-app-layout> --}}
+

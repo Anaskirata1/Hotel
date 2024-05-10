@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('room_title')->nullable();
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
+            $table->string('price')->nullable();
+            $table->string('wifi')->default('yes');
+            $table->string('room_type')->nullable();
             $table->timestamps();
         });
     }
