@@ -24,6 +24,26 @@
           <div class="container-fluid">
             <h2 class="h5 no-margin-bottom">Create Room</h2>
 
+            @if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert"">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+            @endforeach
+        </ul>
+    </div>
+@endif
+{{-- @if (session()->has('error'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ session()->get('error') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif --}}
             <div>
                 <form action="{{ url('add_room') }}" method="POST" enctype="multipart/form-data">
                     @csrf

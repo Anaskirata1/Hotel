@@ -40,12 +40,19 @@ class AdminController extends Controller
     }
     public function add_room( Request $request){
 
+         $request->validate([
+            'title' => 'required|unique:rooms|max:255|min:4',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'mimes:jpg,png'
+        ]);
+
         $data = new Room;
 
-        $data->room_title = $request->title;
+        $data->title = $request->title;
         $data->description = $request->description;
         $data->price = $request->price;
-        $data->room_type = $request->type;
+        $data->type = $request->type;
         $data->wifi = $request->wifi;
 
         $image = $request->image ;
