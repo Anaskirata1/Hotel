@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -64,6 +65,7 @@ class AdminController extends Controller
         $data->image =$imagename;
        }
         $data->save();
+        Log::info("anas");
         Alert::success('Room Added Successfully') ;
      return redirect()->back();
 
@@ -76,6 +78,41 @@ class AdminController extends Controller
         $room = Room::find($id) ;
         $room->delete();
         Alert::success('Room Deleted Successfully') ;
+        return redirect()->back();
+    }
+
+    public function room_update($id){
+        $room = Room::find($id);
+        return view('admin.room_update', compact('room'));
+    }
+    public function edit_room($id , Request $request ){
+
+
+        $request->validate([
+            'title' => 'required|unique:rooms|max:255|min:4',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'mimes:jpg,png'
+        ]);
+
+        $data = Room::find($id) ;
+
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->type = $request->type;
+        $data->wifi = $request->wifi;
+
+        $image = $request->image ;
+       if($image){
+        $imagename = time().'.'.$image->getClientOriginalExtension() ;
+        $request->image->move('room' , $imagename ) ;
+
+        $data->image =$imagename;
+       }
+        $data->save();
+
+        Alert::success('Room Updated Successfully') ;
         return redirect()->back();
     }
 }

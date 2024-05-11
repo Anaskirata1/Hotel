@@ -48,10 +48,13 @@
                         <td>{{ $room->type }}</td>
                         <td>
                            <div class="img-table">
-                            <img width="100px" src="room/{{ $room->image }}" alt="no image">
+                            <img width="75px" src="room/{{ $room->image }}" alt="no image">
                            </div>
                         </td>
-                        <td><a class="confirmation" href="{{ url('room_delete',$room->id) }}"><i class="fa fa-trash"></i></a></td>
+                        <td>
+                          <a class="confirmation mr-2" href="{{ url('room_delete',$room->id) }}"><i class="fa fa-trash"></i></a>
+                          <a  href="{{ url('room_update',$room->id) }}"><i class="fa fa-edit"></i></a>
+                        </td>
                     </tr>
 
                     @endforeach
@@ -74,5 +77,6 @@
         elems[i].addEventListener('click', confirmIt, false);
     }
 </script>
+
 </html>
 
