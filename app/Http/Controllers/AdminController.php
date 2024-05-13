@@ -18,8 +18,9 @@ class AdminController extends Controller
             $usertype = Auth()->user()->usertype;
 
             if($usertype == 'user'){
+                $rooms = Room::all();
 
-                return view('home.index');
+                return view('home.index', compact('rooms'));
             }
             elseif($usertype == 'admin'){
 
@@ -34,7 +35,9 @@ class AdminController extends Controller
 
     public function home(){
 
-        return view('home.index');
+        $rooms = Room::all();
+
+        return view('home.index', compact('rooms'));
     }
 
     public function create_room(){
