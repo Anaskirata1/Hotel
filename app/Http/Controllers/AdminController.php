@@ -80,7 +80,7 @@ class AdminController extends Controller
     public function room_delete($id){
         $room = Room::find($id) ;
         $room->delete();
-        Alert::success('Room Deleted Successfully') ;
+        Alert::info('Room Deleted Successfully') ;
         return redirect()->back();
     }
 
