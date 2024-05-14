@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            //
+
+            $table->string("status")->default('waiting')->after('phone');
         });
     }
 
@@ -26,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            //
+            $table->dropColumn('status');
         });
     }
 };
