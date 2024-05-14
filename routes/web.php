@@ -50,3 +50,11 @@ Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
 
 Route::get('/bookings', [AdminController::class, 'bookings']);
+
+Route::get('/book_delete/{id}', [AdminController::class, 'book_delete']);
+
+Route::get('/approve_book/{id}', [AdminController::class, 'approve_book']);
+
+Route::get('/rejected_book/{id}', [AdminController::class, 'rejected_book']);
+
+Route::get('print_pdf', [AdminController::class, 'print_pdf']);

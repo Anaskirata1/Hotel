@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Log;
 use App\Models\Booking;
+use PDF ;
 
 class AdminController extends Controller
 {
@@ -81,7 +82,7 @@ class AdminController extends Controller
     public function room_delete($id){
         $room = Room::find($id) ;
         $room->delete();
-        Alert::info('Room Deleted Successfully') ;
+        Alert::warning('Room Deleted Successfully') ;
         return redirect()->back();
     }
 
@@ -123,5 +124,44 @@ class AdminController extends Controller
     public function bookings(){
         $rooms = Booking::all();
         return view('admin.booking' , compact('rooms'));
+    }
+    public function book_delete($id){
+        $data = Booking::find($id);
+        $data->delete();
+        Alert::warning(' The Book Deleted Successfully') ;
+        return redirect()->back();
+    }
+    public function approve_book($id){
+
+        $booking = Booking::find($id);
+
+        $booking->status = 'Approved';
+
+        $booking->save();
+
+        Alert::success(' The Booking Approved Successfully') ;
+        return redirect()->back();
+    }
+    public function rejected_book($id){
+
+        $booking = Booking::find($id);
+
+        $booking->status = 'Rejected';
+
+        $booking->save();
+
+        Alert::warning(' The Booking Rejected Successfully') ;
+        return redirect()->back();
+    }
+
+    public function print_pdf(){
+        $rooms = Booking::all();
+
+        $pdf = PDF::loadView('admin.pdf', compact('rooms'));
+        Alert::success(' The PDF Printed Successfully') ;
+        return $pdf->download('bookings_details.pdf');
+
+
+
     }
 }
