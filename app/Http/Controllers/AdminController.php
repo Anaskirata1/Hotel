@@ -8,6 +8,7 @@ use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Log;
+use App\Models\Booking;
 
 class AdminController extends Controller
 {
@@ -117,5 +118,10 @@ class AdminController extends Controller
 
         Alert::success('Room Updated Successfully') ;
         return redirect()->back();
+    }
+
+    public function bookings(){
+        $rooms = Booking::all();
+        return view('admin.booking' , compact('rooms'));
     }
 }
