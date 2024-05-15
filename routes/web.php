@@ -58,3 +58,9 @@ Route::get('/approve_book/{id}', [AdminController::class, 'approve_book']);
 Route::get('/rejected_book/{id}', [AdminController::class, 'rejected_book']);
 
 Route::get('print_pdf', [AdminController::class, 'print_pdf']);
+
+Route::get('view_gallary', [AdminController::class, 'view_gallary']);
+
+Route::post('upload_gallary', [AdminController::class, 'upload_gallary']);
+
+Route::get('gallary_delete/{id}', [AdminController::class, 'gallary_delete']);

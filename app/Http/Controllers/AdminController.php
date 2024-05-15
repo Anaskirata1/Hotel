@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
+use App\Models\Gallary;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Log;
@@ -161,7 +162,34 @@ class AdminController extends Controller
         Alert::success(' The PDF Printed Successfully') ;
         return $pdf->download('bookings_details.pdf');
 
+    }
+    public function view_gallary(){
+        $gallarys = Gallary::all();
+        return view('admin.gallary', compact("gallarys"));
+    }
+    public function upload_gallary(Request $request ){
 
+        $request->validate([
+            'image' => 'required|unique:gallaries|mimes:jpg,png'
+        ]);
 
+        $gallary = new Gallary;
+
+        $image = $request->image ;
+        if($image){
+            $imagename = time().'.'.$image->getClientOriginalExtension() ;
+            $request->image->move('gallary' , $imagename ) ;
+
+            $gallary->image =$imagename;
+        }
+        $gallary->save();
+        Alert::success(' Image Added Successfully') ;
+        return redirect()->back();
+    }
+    public function gallary_delete($id){
+        $gallary = Gallary::find($id);
+        $gallary->delete();
+        Alert::warning(' Image Deleted Successfully') ;
+        return redirect()->back();
     }
 }
