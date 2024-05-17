@@ -139,7 +139,7 @@
                            {{-- <a id="logout" href="login.html" class="nav-link">Logout <i class="icon-logout"></i></a> --}}
                         </div>
         </div>
-      </div/>
+      </div>
       </div>
     </nav>
   </header>

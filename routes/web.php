@@ -74,3 +74,11 @@ Route::get('all_messages', [AdminController::class, 'all_messages'])->middleware
 Route::get('send_mail/{id}', [AdminController::class, 'send_mail'])->middleware(['auth', 'admin']);
 
 Route::post('mail/{id}', [AdminController::class, 'mail'])->middleware(['auth', 'admin']);
+
+Route::get('about', [HomeController::class, 'about']);
+
+Route::get('our_room', [HomeController::class, 'our_room']);
+
+Route::get('our_gallery', [HomeController::class, 'our_gallery']);
+
+Route::get('our_blog', [HomeController::class, 'our_blog']);

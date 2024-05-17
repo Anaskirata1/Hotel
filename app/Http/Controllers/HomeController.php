@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Contact;
+use App\Models\Gallary;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,5 +84,23 @@ class HomeController extends Controller
         $contact->save();
         Alert::success('Message Sended Successfully') ;
         return redirect()->back();
+    }
+    public function about(){
+
+        return view('home.aboutus');
+    }
+
+    public function our_room(){
+
+        $rooms = Room::all();
+        return view('home.our_room', compact('rooms'));
+    }
+    public function our_gallery(){
+
+        $gallarys = Gallary::all();
+        return view('home.our_gallery', compact('gallarys'));
+    }
+    public function our_blog(){
+        return view('home.our_blog');
     }
 }
