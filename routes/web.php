@@ -64,3 +64,9 @@ Route::get('view_gallary', [AdminController::class, 'view_gallary']);
 Route::post('upload_gallary', [AdminController::class, 'upload_gallary']);
 
 Route::get('gallary_delete/{id}', [AdminController::class, 'gallary_delete']);
+
+Route::post('contact', [HomeController::class, 'contact']);
+
+Route::get('contact_nav', [HomeController::class, 'contact_nav']);
+
+Route::get('all_messages', [AdminController::class, 'all_messages']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Gallary;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Log;
@@ -21,9 +22,10 @@ class AdminController extends Controller
             $usertype = Auth()->user()->usertype;
 
             if($usertype == 'user'){
+                $gallarys = Gallary::all();
                 $rooms = Room::all();
 
-                return view('home.index', compact('rooms'));
+                return view('home.index', compact('rooms','gallarys'));
             }
             elseif($usertype == 'admin'){
 
@@ -38,9 +40,11 @@ class AdminController extends Controller
 
     public function home(){
 
+        $gallarys = Gallary::all();
+
         $rooms = Room::all();
 
-        return view('home.index', compact('rooms'));
+        return view('home.index', compact('rooms', 'gallarys'));
     }
 
     public function create_room(){
@@ -191,5 +195,9 @@ class AdminController extends Controller
         $gallary->delete();
         Alert::warning(' Image Deleted Successfully') ;
         return redirect()->back();
+    }
+    public function all_messages() {
+        $messages = Contact::all();
+        return view('admin.messages', compact('messages'));
     }
 }

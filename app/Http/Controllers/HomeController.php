@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Contact;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,7 +58,30 @@ class HomeController extends Controller
         return redirect()->back();
         }
 
+    }
+    public function contact_nav(){
+        return view('home.contact_nav');
+    }
+
+    public function contact(Request $request){
 
 
+        $request->validate([
+
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'message' => 'required',
+        ]);
+
+
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->save();
+        Alert::success('Message Sended Successfully') ;
+        return redirect()->back();
     }
 }
