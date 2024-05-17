@@ -70,3 +70,7 @@ Route::post('contact', [HomeController::class, 'contact']);
 Route::get('contact_nav', [HomeController::class, 'contact_nav']);
 
 Route::get('all_messages', [AdminController::class, 'all_messages']);
+
+Route::get('send_mail/{id}', [AdminController::class, 'send_mail']);
+
+Route::post('mail/{id}', [AdminController::class, 'mail']);

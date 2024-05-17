@@ -12,6 +12,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Log;
 use App\Models\Booking;
 use PDF ;
+use Notification;
+use App\Notifications\SendEmailNotification;
 
 class AdminController extends Controller
 {
@@ -199,5 +201,28 @@ class AdminController extends Controller
     public function all_messages() {
         $messages = Contact::all();
         return view('admin.messages', compact('messages'));
+    }
+    public function send_mail($id){
+
+        $data = Contact::find($id);
+        return view('admin.send_mail', compact('data')) ;
+    }
+    public function mail($id ,Request $request){
+
+        $data = Contact::find($id);
+
+        $details = [
+            'greeting' => $request->greeting,
+            'body' => $request->body,
+            'action_text' => $request->action_text,
+            'action_url' => $request->action_url,
+            'endline' => $request->endline,
+        ];
+
+        Notification::send($data , new SendEmailNotification($details));
+        return redirect()->back();
+
+
+
     }
 }

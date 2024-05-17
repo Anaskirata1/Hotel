@@ -24,6 +24,7 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Message</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -36,6 +37,9 @@
                             <td>{{ $message->email }}</td>
                             <td>{{ $message->phone }}</td>
                             <td>{{ $message->message }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ url('send_mail',$message->id) }}">Send Email</a>
+                            </td>
 
 
                         </tr>
