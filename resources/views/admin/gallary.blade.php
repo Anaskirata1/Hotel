@@ -76,7 +76,7 @@
 
                             <td>
                                 <a class="confirmation mr-2" href="{{ url('gallary_delete',$gallary->id) }}"><i class="fa fa-trash"></i></a>
-                                <a title="edit" class="confirmation"  href="{{ url('gallary_update',$gallary->id) }}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+
 
                             </td>
 

@@ -74,9 +74,14 @@
 
                             </td>
                             <td>
+                                 @if ($room->status == 'waiting')
                                 <a class="confirmation mr-2" href="{{ url('book_delete',$room->id) }}"><i class="fa fa-trash"></i></a>
                                 <a title="Approve" class="confirmation"  href="{{ url('approve_book',$room->id) }}"><i class="fa fa-check" aria-hidden="true"></i></a>
                                 <a title="Rejected" class="confirmation"  href="{{ url('rejected_book',$room->id) }}"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                                @elseif ($room->status == 'Approved' | $room->status == 'Rejected' )
+                                <a class="confirmation mr-2" href="{{ url('book_delete',$room->id) }}"><i class="fa fa-trash"></i></a>
+
+                                @endif
                             </td>
 
                         </tr>

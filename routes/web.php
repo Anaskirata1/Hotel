@@ -75,6 +75,8 @@ Route::get('send_mail/{id}', [AdminController::class, 'send_mail'])->middleware(
 
 Route::post('mail/{id}', [AdminController::class, 'mail'])->middleware(['auth', 'admin']);
 
+Route::post('searchdata', [AdminController::class, 'searchdata'])->middleware(['auth', 'admin']);
+
 Route::get('about', [HomeController::class, 'about']);
 
 Route::get('our_room', [HomeController::class, 'our_room']);

@@ -3,10 +3,22 @@
 <html>
   <head>
     @include('admin.css')
+
     <style>
    .img-table{
     max-width: 100px;
    }
+   .search{
+    position: relative;
+   }
+   .btn-search{
+    position: absolute;
+    left: 130px;
+    margin: 0px;
+    border: 1;
+    padding: 8px;
+}
+
     </style>
   </head>
   <body>
@@ -17,6 +29,11 @@
         <div class="page-header">
           <div class="container-fluid">
             <h2 class="h5 mb-2">View Rooms</h2>
+            <form class="search mb-3" action="{{ url('searchdata') }}" method="POST">
+                @csrf
+                <input type="text" name="search">
+                <button type="submit" class="btn btn-info btn-search">Search</button>
+            </form>
             @include('sweetalert::alert')
             <div class="table-responsive">
             <table class="table table-dark table-striped ">

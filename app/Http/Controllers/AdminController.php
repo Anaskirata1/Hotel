@@ -225,4 +225,17 @@ class AdminController extends Controller
 
 
     }
+
+    public function searchdata(Request $request)
+{
+    $searchText = $request->search;
+
+    if ($searchText) {
+        $rooms = Room::where('title', 'LIKE', "%$searchText%")->get();
+    } else {
+        $rooms = Room::all();
+    }
+
+    return view('admin.view_room', compact('rooms'));
+}
 }
